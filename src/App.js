@@ -3,12 +3,14 @@ import "./App.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-import { Fab, makeStyles, IconButton } from "@material-ui/core";
+import { Fab, makeStyles, IconButton, Tooltip } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import FormDialog from "./components/dialog";
 import update from "./assetts/svg/pencil.svg";
 import trash from "./assetts/svg/trash.svg";
+import visible from "./assetts/svg/eye.svg";
 import swal from "sweetalert";
+import Row from "./components/row";
 
 const initialValue = {
   ID: "",
@@ -39,39 +41,64 @@ function App() {
   const [, setGridApi] = useState(null);
   const [tableData, setTableData] = useState(null);
   const [open, setOpen] = React.useState(false);
+  const [openRow, setOpenRow] = React.useState(false);
   const [formData, setFormData] = useState(initialValue);
   const classes = useStyles();
+
   const handleClickOpen = () => {
     setOpen(true);
+  };
+
+  const handleDetailsModelOpen = () => {
+    setOpenRow(true);
   };
 
   const handleClose = () => {
     setOpen(false);
     setFormData(initialValue);
   };
+
+  const handleDetailsModelClose = () => {
+    setOpenRow(false);
+    setFormData(initialValue);
+  };
+
   const url = "https://notification-system-beta.herokuapp.com/getAS";
   const columnDefs = [
     {
       headerName: "Actions",
       field: "ID",
-      minWidth: 150,
+      minWidth: 180,
       suppressMenuHide: false,
       cellRendererFramework: (params) => (
         <div>
-          <IconButton
-            onClick={() => handleUpdate(params.data)}
-            variant="outlined"
-            color="primary"
-          >
-            <img src={update} alt="update" width={23} />
-          </IconButton>
-          <IconButton
-            onClick={() => handleDelete(params.value)}
-            variant="outlined"
-            color="secondary"
-          >
-            <img src={trash} alt="delete" width={23} />
-          </IconButton>
+          <Tooltip title="View">
+            <IconButton
+              onClick={() => handleDetails(params.data)}
+              variant="outlined"
+              color="primary"
+            >
+              <img src={visible} alt="details" width={23} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Edit">
+            <IconButton
+              onClick={() => handleUpdate(params.data)}
+              variant="outlined"
+              color="primary"
+            >
+              <img src={update} alt="update" width={23} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Delete">
+            <IconButton
+              onClick={() => handleDelete(params.value)}
+              variant="outlined"
+              color="secondary"
+            >
+              <img src={trash} alt="delete" width={23} />
+            </IconButton>
+          </Tooltip>
         </div>
       ),
     },
@@ -149,7 +176,7 @@ function App() {
   // calling getUsers function for first time
   useEffect(() => {
     getUsers();
-  }, [tableData]);
+  }, []);
 
   //fetching user data from server
   const getUsers = () => {
@@ -174,6 +201,10 @@ function App() {
   const handleUpdate = (oldData) => {
     setFormData(oldData);
     handleClickOpen();
+  };
+  const handleDetails = (oldData) => {
+    setFormData(oldData);
+    handleDetailsModelOpen();
   };
   //deleting a user
   const handleDelete = (id) => {
@@ -334,6 +365,11 @@ function App() {
         data={formData}
         onChange={onChange}
         handleFormSubmit={handleFormSubmit}
+      />
+      <Row
+        open={openRow}
+        handleClose={handleDetailsModelClose}
+        data={formData}
       />
     </div>
   );
