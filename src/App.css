@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+}
+.App {
+  padding-bottom: 3rem;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.create-form label {
+  color: whitesmoke !important;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px !important;
+}
+.optionsPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+}
+.optionsPage select {
+  padding: 0.8rem 1.4rem;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  background-color: teal;
+  color: #fff;
+}
+.optionsPage span {
+  color: #fff;
+  font-style: 1rem;
+  font-weight: 400;
+  margin-right: 1rem;
+}
+.groupBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.groupBtn a {
+  width: 50px;
+  margin-top: 0rem;
+}
+.ag-grid-style {
+  width: 85% !important;
+  margin-left: 4%;
+}
+.app-nav {
+  background-image: url(./assetts/img/top-header.jpg);
+  min-height: 20vh;
+  margin-bottom: 2rem;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+.app-nav h1 {
+  color: rgb(247, 232, 232);
+  margin-left: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.svgDiv {
+  display: flex;
+  align-items: center;
+}
