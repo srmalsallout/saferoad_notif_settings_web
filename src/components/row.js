@@ -52,8 +52,10 @@ export default function Row({ open, handleClose, data }) {
           <h3 className="modelData">{AccountID ? AccountID : "Not Added"}</h3>
           <Divider />
           <strong className="titleModel">Emails</strong>
-          {emailsSub.map((it) => (
-            <h3 className="modelData">{it ? it : "Not Added"}</h3>
+          {emailsSub.map((it, index) => (
+            <h3 className="modelData" key={index}>
+              {it ? it : "Not Added"}
+            </h3>
           ))}
 
           <Divider />
