@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "25px",
     background: "#06446b",
     color: "#fff",
+    padding: ".7rem 3rem",
     "&:hover": {
       background: "#0b5380",
     },
@@ -68,7 +69,7 @@ const RegistrationForm = ({ submitForm }) => {
       .then((result) => {
         if (result.message === "user logged in!!") {
           swal({
-            title: "Good job!",
+            title: "Success!",
             text: "User Logged In!!",
             icon: "success",
             button: "OK",
@@ -90,7 +91,7 @@ const RegistrationForm = ({ submitForm }) => {
       <Paper elevation={5} style={paperStyle}>
         <Grid align="center">
           <AccountCircleIcon className={classes.account} />
-          <Typography variant="h4">Register</Typography>
+          <Typography variant="h4">LOGIN</Typography>
         </Grid>
         <Formik
           initialValues={initialValues}
@@ -101,7 +102,7 @@ const RegistrationForm = ({ submitForm }) => {
             <Form>
               <Field
                 as={TextField}
-                name="userName"
+                name="Name"
                 label="Username"
                 type="text"
                 fullWidth
@@ -113,7 +114,7 @@ const RegistrationForm = ({ submitForm }) => {
 
               <Field
                 as={TextField}
-                name="password"
+                name="pass"
                 label="Password"
                 type="password"
                 fullWidth
@@ -130,7 +131,7 @@ const RegistrationForm = ({ submitForm }) => {
                 color="primary"
                 className={classes.btnSubmit}
               >
-                Register
+                Login
               </Button>
             </Form>
           )}
