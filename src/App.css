@@ -71,6 +71,9 @@
   display: flex;
   align-items: center;
 }
+.svgDiv img {
+  margin-left: 5rem;
+}
 .titleModel {
   color: #06446b;
 }
